@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOD BOX| Fresh Ingredients, Your Way</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo"><img src="foodboxlogo.png"> Root <br>& <br>Recipe</a>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#recipes">hot topic</a></li>
+            <li><a href="#tutorials">Prep Videos</a></li>
+            <li><a href="#portal" class="cta-btn">Login / Post Recipe</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Fresh Recipes. Local Ingredients. Tailored for Your Fridge.</h1>
+            <p>Choose from top-ranked local chef recipes. Buy the entire basket delivered by local suppliers, or check off what you already have at home to save money and reduce waste.</p>
+            <div style="display: flex; gap: 15px;">
+                <a href="recipepage.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Explore Recipes</a>
+                <a href="#portal" class="tab-btn" style="text-decoration: none; display: inline-block; padding: 10px 20px;">Submit a Recipe</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="cooking.png" alt="img1 - Delicious healthy cooking basket">
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section-padding" style="background-color: #f7f9f6;">
+        <h2 class="section-title">The Smarter Way to Cook</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+               
+                <h3>Custom Baskets</h3>
+                <p style="margin-top: 15px; color: #616161;">Only buy what you need. Deselect ingredients you already have sitting in your pantry.</p>
+            </div>
+            <div class="feature-card">
+                
+                <h3>Local Suppliers</h3>
+                <p style="margin-top: 15px; color: #616161;">We partner with farm networks and local suppliers around you for ultra-fresh, quick deliveries.</p>
+            </div>
+            <div class="feature-card">
+               
+                <h3>Tested & Ranked</h3>
+                <p style="margin-top: 15px; color: #616161;">Submit your own recipes! Once our kitchen team tests and approves them, the community votes them up.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="recipes" class="section-padding">
+        <h2 class="section-title">Browse Community Masterpieces</h2>
+        
+        <div class="recipe-tabs">
+            <button class="tab-btn active"> Trending This Week</button>
+            <button class="tab-btn"> Best of All Time</button>
+            <button class="tab-btn"> Vegan Alternatives</button>
+        </div>
+
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <div class="recipe-img-container">
+                    <span class="rank-badge">#1 Trending</span>
+                    <img src="avocado.png" alt="img2 - Garden Avocado Pesto Pasta">
+                </div>
+                <div class="recipe-info">
+                    <h3>Garden Avocado Pesto Pasta</h3>
+                    <div class="recipe-meta">
+                        <span>⏱️ 20 Mins</span>
+                        <span>⭐️ 4.9 (1.2k reviews)</span>
+                    </div>
+                    <p style="font-size: 14px; color: #616161; margin-bottom: 20px;">
+                        <strong>Alternative highlight:</strong> Swap standard pasta for gluten-free zucchini noodles at checkout!
+                    </p>
+                    <div class="flex-buttons">
+                        <button class="btn-sm btn-primary">Buy Missing Ingredients</button>
+                        <button class="btn-sm btn-secondary">Buy Full Recipe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-img-container">
+                    <span class="rank-badge badge-alt">Top Rated</span>
+                    <img src="meat.png" alt="img3 - Rustic Honey Glazed Salmon">
+                </div>
+                <div class="recipe-info">
+                    <h3>Rustic Honey Glazed Salmon</h3>
+                    <div class="recipe-meta">
+                        <span>⏱️ 30 Mins</span>
+                        <span>⭐️ 5.0 (3.4k reviews)</span>
+                    </div>
+                    <p style="font-size: 14px; color: #616161; margin-bottom: 20px;">
+                        <strong>Alternative highlight:</strong> Tofu option available for a beautiful plant-based alternative.
+                    </p>
+                    <div class="flex-buttons">
+                        <button class="btn-sm btn-primary">Buy Missing Ingredients</button>
+                        <button class="btn-sm btn-secondary">Buy Full Recipe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-img-container">
+                    <span class="rank-badge">#2 Trending</span>
+                    <img src="crispy.png" alt="img4 - Crispy Sweet Potato Buddha Bowl">
+                </div>
+                <div class="recipe-info">
+                    <h3>Crispy Sweet Potato Bowl</h3>
+                    <div class="recipe-meta">
+                        <span>⏱️ 25 Mins</span>
+                        <span>⭐️ 4.8 (850 reviews)</span>
+                    </div>
+                    <p style="font-size: 14px; color: #616161; margin-bottom: 20px;">
+                        <strong>Alternative highlight:</strong> Swap peanut dressing for tahini-garlic if nut allergies apply.
+                    </p>
+                    <div class="flex-buttons">
+                        <button class="btn-sm btn-primary">Buy Missing Ingredients</button>
+                        <button class="btn-sm btn-secondary">Buy Full Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorials" class="section-padding video-section">
+        <h2 class="section-title">Learn How To Prep Like A Pro</h2>
+        <p style="max-width: 600px; margin: -20px auto 40px auto; color: #556b2f;">Watch easy-to-follow videos demonstrating exactly how to slice, dice, and construct your dishes with the exact ingredients delivered to your door.</p>
+        
+        <div class="video-container">
+            <div class="video-placeholder">
+                <span style="font-size: 60px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">▶️</span>
+                <h3 style="margin-top: 15px;">Video Tutorial: Perfect Pesto & Knife Skills</h3>
+                <p style="font-size: 14px; opacity: 0.8; margin-top: 5px;">Featuring local Chef Marcus (04:15)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portal" class="section-padding portal-section">
+        <div class="login-card">
+            <h2 style="color: #1b5e20; margin-bottom: 10px;">Welcome Back!</h2>
+            <p style="font-size: 14px; color: #757575; margin-bottom: 25px;">Log in to order ingredients, watch restricted premium videos, or submit your own recipes for testing.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Logged in successfully! Ready to submit or buy recipes.');">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="cta-btn" style="width: 100%; border: none; font-size: 16px; font-weight:600; padding: 12px; margin-top: 10px; cursor: pointer;">Sign In</button>
+            </form>
+            
+            <div style="margin-top: 20px; font-size: 13px; color: #616161;">
+                Don't have an account? <a href="#" style="color: #2e7d32; text-decoration: none; font-weight: bold;">Register Here</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Root & Recipe Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
+    </footer>
+
+</body>
+</html>
