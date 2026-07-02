@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOOD BOX| Fresh Ingredients, Your Way</title>
-<link rel="stylesheet" href="style.css">
+    <title>FOOD BOX | Fresh Ingredients, Your Way</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="#home" class="logo"><img src="foodboxlogo.png"> Root <br>& <br>Recipe</a>
+        <a href="#home" class="logo"><img src="foodboxlogo.png" alt="Logo"> Root <br>& <br>Recipe</a>
         <ul class="nav-links">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#recipes">hot topic</a></li>
-            <li><a href="#tutorials">Prep Videos</a></li>
+            <li><a href="#home" class="nav-item active">Home</a></li>
+            <li><a href="#how-it-works" class="nav-item">How It Works</a></li>
+            <li><a href="#recipes" class="nav-item">Hot Topic</a></li>
+            <li><a href="#tutorials" class="nav-item">Prep Videos</a></li>
             <li><a href="#portal" class="cta-btn">Login / Post Recipe</a></li>
         </ul>
     </nav>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="cooking.png" alt="img1 - Delicious healthy cooking basket">
+            <img src="cooking.png" alt="Delicious healthy cooking basket">
         </div>
     </section>
 
@@ -37,17 +37,14 @@
         <h2 class="section-title">The Smarter Way to Cook</h2>
         <div class="features-grid">
             <div class="feature-card">
-               
                 <h3>Custom Baskets</h3>
                 <p style="margin-top: 15px; color: #616161;">Only buy what you need. Deselect ingredients you already have sitting in your pantry.</p>
             </div>
             <div class="feature-card">
-                
                 <h3>Local Suppliers</h3>
                 <p style="margin-top: 15px; color: #616161;">We partner with farm networks and local suppliers around you for ultra-fresh, quick deliveries.</p>
             </div>
             <div class="feature-card">
-               
                 <h3>Tested & Ranked</h3>
                 <p style="margin-top: 15px; color: #616161;">Submit your own recipes! Once our kitchen team tests and approves them, the community votes them up.</p>
             </div>
@@ -57,17 +54,19 @@
     <section id="recipes" class="section-padding">
         <h2 class="section-title">Browse Community Masterpieces</h2>
         
+        <!-- Tab buttons call the filterRecipes function -->
         <div class="recipe-tabs">
-            <button class="tab-btn active"> Trending This Week</button>
-            <button class="tab-btn"> Best of All Time</button>
-            <button class="tab-btn"> Vegan Alternatives</button>
+            <button class="tab-btn active" onclick="filterRecipes('trending', this)">Trending This Week</button>
+            <button class="tab-btn" onclick="filterRecipes('top-rated', this)">Best of All Time</button>
+            <button class="tab-btn" onclick="filterRecipes('vegan', this)">Vegan Alternatives</button>
         </div>
 
         <div class="recipe-grid">
-            <div class="recipe-card">
+            <!-- Added data attributes for JS filtering -->
+            <div class="recipe-card" data-category="trending vegan">
                 <div class="recipe-img-container">
                     <span class="rank-badge">#1 Trending</span>
-                    <img src="avocado.png" alt="img2 - Garden Avocado Pesto Pasta">
+                    <img src="avocado.png" alt="Garden Avocado Pesto Pasta">
                 </div>
                 <div class="recipe-info">
                     <h3>Garden Avocado Pesto Pasta</h3>
@@ -79,16 +78,16 @@
                         <strong>Alternative highlight:</strong> Swap standard pasta for gluten-free zucchini noodles at checkout!
                     </p>
                     <div class="flex-buttons">
-                        <button class="btn-sm btn-primary">Buy Missing Ingredients</button>
-                        <button class="btn-sm btn-secondary">Buy Full Recipe</button>
+                        <button class="btn-sm btn-primary" onclick="addToCart('Missing ingredients for Pasta')">Buy Missing Ingredients</button>
+                        <button class="btn-sm btn-secondary" onclick="addToCart('Full recipe for Pasta')">Buy Full Recipe</button>
                     </div>
                 </div>
             </div>
 
-            <div class="recipe-card">
+            <div class="recipe-card" data-category="top-rated">
                 <div class="recipe-img-container">
                     <span class="rank-badge badge-alt">Top Rated</span>
-                    <img src="meat.png" alt="img3 - Rustic Honey Glazed Salmon">
+                    <img src="meat.png" alt="Rustic Honey Glazed Salmon">
                 </div>
                 <div class="recipe-info">
                     <h3>Rustic Honey Glazed Salmon</h3>
@@ -100,16 +99,16 @@
                         <strong>Alternative highlight:</strong> Tofu option available for a beautiful plant-based alternative.
                     </p>
                     <div class="flex-buttons">
-                        <button class="btn-sm btn-primary">Buy Missing Ingredients</button>
-                        <button class="btn-sm btn-secondary">Buy Full Recipe</button>
+                        <button class="btn-sm btn-primary" onclick="addToCart('Missing ingredients for Salmon')">Buy Missing Ingredients</button>
+                        <button class="btn-sm btn-secondary" onclick="addToCart('Full recipe for Salmon')">Buy Full Recipe</button>
                     </div>
                 </div>
             </div>
 
-            <div class="recipe-card">
+            <div class="recipe-card" data-category="trending vegan">
                 <div class="recipe-img-container">
                     <span class="rank-badge">#2 Trending</span>
-                    <img src="crispy.png" alt="img4 - Crispy Sweet Potato Buddha Bowl">
+                    <img src="crispy.png" alt="Crispy Sweet Potato Buddha Bowl">
                 </div>
                 <div class="recipe-info">
                     <h3>Crispy Sweet Potato Bowl</h3>
@@ -121,8 +120,8 @@
                         <strong>Alternative highlight:</strong> Swap peanut dressing for tahini-garlic if nut allergies apply.
                     </p>
                     <div class="flex-buttons">
-                        <button class="btn-sm btn-primary">Buy Missing Ingredients</button>
-                        <button class="btn-sm btn-secondary">Buy Full Recipe</button>
+                        <button class="btn-sm btn-primary" onclick="addToCart('Missing ingredients for Sweet Potato Bowl')">Buy Missing Ingredients</button>
+                        <button class="btn-sm btn-secondary" onclick="addToCart('Full recipe for Sweet Potato Bowl')">Buy Full Recipe</button>
                     </div>
                 </div>
             </div>
@@ -134,8 +133,9 @@
         <p style="max-width: 600px; margin: -20px auto 40px auto; color: #556b2f;">Watch easy-to-follow videos demonstrating exactly how to slice, dice, and construct your dishes with the exact ingredients delivered to your door.</p>
         
         <div class="video-container">
-            <div class="video-placeholder">
-                <span style="font-size: 60px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">▶️</span>
+            <!-- Added id and click handler to simulate video playback -->
+            <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()" style="cursor: pointer; position: relative; background: #e0e0e0; padding: 60px 20px; text-align: center;">
+                <span style="font-size: 60px; display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">▶️</span>
                 <h3 style="margin-top: 15px;">Video Tutorial: Perfect Pesto & Knife Skills</h3>
                 <p style="font-size: 14px; opacity: 0.8; margin-top: 5px;">Featuring local Chef Marcus (04:15)</p>
             </div>
@@ -147,7 +147,7 @@
             <h2 style="color: #1b5e20; margin-bottom: 10px;">Welcome Back!</h2>
             <p style="font-size: 14px; color: #757575; margin-bottom: 25px;">Log in to order ingredients, watch restricted premium videos, or submit your own recipes for testing.</p>
             
-            <form onsubmit="event.preventDefault(); alert('Logged in successfully! Ready to submit or buy recipes.');">
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" required placeholder="you@example.com">
@@ -165,9 +165,81 @@
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 Root & Recipe Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
+    <footer class="foot">
+        <p><a href="">About Us</a></p>
+        <p><a href="">Contacts</a></p>
+        <p><a href="">Account</a></p>
+        <p><a href="#home">Top Page</a></p>
+        <p id="last">© 2026 Root & Recipe Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
     </footer>
 
+   
+    <script>
+       
+        function filterRecipes(category, clickedButton) {
+           
+            const tabs = document.querySelectorAll('.recipe-tabs .tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            clickedButton.classList.add('active');
+
+         
+            const cards = document.querySelectorAll('.recipe-grid .recipe-card');
+            cards.forEach(card => {
+                const categories = card.getAttribute('data-category');
+                if (categories.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+      
+        function playVideo() {
+            const container = document.getElementById('videoPlaceholder');
+          
+            container.innerHTML = `
+                <iframe width="100%" height="315" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen style="display: block; border-radius: 8px;">
+                </iframe>`;
+        }
+
+       
+        function addToCart(itemName) {
+            alert(`🛒 Added to box: ${itemName}!`);
+        }
+
+       
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            alert(`Logged in successfully as ${email}! Ready to submit or buy recipes.`);
+        });
+
+       
+        window.addEventListener('scroll', () => {
+            let currentSection = "";
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-links .nav-item');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+
+                if (pageYOffset >= sectionTop - 120) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(currentSection)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
