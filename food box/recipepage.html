@@ -9,15 +9,16 @@
 <body>
 
     <nav>
-        <div class="logo" onclick="showPage('home')"><img src="foodboxlogo.png">ROOT <br> & <br> HARVEST</div>
+        <div class="logo" onclick="showPage('browse')"><img src="foodboxlogo.png" alt="Logo">ROOT <br> & <br> HARVEST</div>
         <div class="nav-links">
-            <a id="link-home" href="food box.html" >Home</a>
+            <a id="link-home" href="food box.html">Home</a>
             <a id="link-browse" onclick="showPage('browse')" class="active-link">Browse Recipes</a>
             <a id="link-trending" onclick="showPage('trending')">Trending</a>
             <a id="link-post" onclick="showPage('post-recipe')">Post a Recipe</a>
             <a id="link-login" onclick="showPage('login')" class="btn-login">Login</a>
         </div>
     </nav>
+    
     <section id="browse" class="page-section active">
         <div style="text-align: center; margin-bottom: 40px;">
             <h2 style="color: var(--primary); font-size: 2.5rem; font-weight: 700;">Find Your Next Meal</h2>
@@ -25,20 +26,23 @@
         </div>
         <div class="search-filter-container">
             <div class="search-bar-wrapper">
-                <input type="text" class="search-input" placeholder="Search ingredients, recipes, or keywords (e.g., Avocado, Pasta, Garlic)...">
-                <button class="cta-button" style="border-radius: 30px; padding: 0 35px;">Search</button>
+                <!-- Added id to search input -->
+                <input type="text" id="searchInput" class="search-input" placeholder="Search ingredients, recipes, or keywords (e.g., Avocado, Pasta, Garlic)...">
+                <button class="cta-button" style="border-radius: 30px; padding: 0 35px;" onclick="handleSearch()">Search</button>
             </div>
             <div class="filter-tags">
-                <button class="filter-btn active-filter">All Styles</button>
-                <button class="filter-btn">Vegan</button>
-                <button class="filter-btn">Gluten-Free</button>
-                <button class="filter-btn">Keto-Friendly</button>
-                <button class="filter-btn">High-Protein</button>
-                <button class="filter-btn">Under 20 Mins</button>
+                <!-- Added click event listeners to filter buttons -->
+                <button class="filter-btn active-filter" onclick="filterStyle('All', this)">All Styles</button>
+                <button class="filter-btn" onclick="filterStyle('Vegan', this)">Vegan</button>
+                <button class="filter-btn" onclick="filterStyle('Gluten-Free', this)">Gluten-Free</button>
+                <button class="filter-btn" onclick="filterStyle('Keto-Friendly', this)">Keto-Friendly</button>
+                <button class="filter-btn" onclick="filterStyle('High-Protein', this)">High-Protein</button>
+                <button class="filter-btn" onclick="filterStyle('Under 20 Mins', this)">Under 20 Mins</button>
             </div>
         </div>
-        <div class="grid">
-            <div class="recipe-card">
+        <div class="grid" id="recipeGrid">
+            <!-- Added explicit data-tags for accurate keyword filtering -->
+            <div class="recipe-card" data-tags="Gluten-Free Alternative Pasta Lemon Garlic Noodles Olive Oil">
                 <img src="zesty.png" alt="Zesty Lemon Garlic Pasta">
                 <div class="recipe-details">
                     <div class="recipe-meta">
@@ -64,12 +68,13 @@
                     </div>
 
                     <div class="action-block">
-                        <button class="cta-button" style="background: var(--primary);">Order Selection</button>
-                        <button class="cta-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 10px 28px;">Order All Ingredients</button>
+                        <button class="cta-button" style="background: var(--primary);" onclick="orderSelection(this)">Order Selection</button>
+                        <button class="cta-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 10px 28px;" onclick="orderAllIngredients(this)">Order All Ingredients</button>
                     </div>
                 </div>
             </div>
-            <div class="recipe-card">
+            
+            <div class="recipe-card" data-tags="Vegan Plant-Based Thai Basil Tofu Bowl Pepper Jasmine Rice Rice">
                 <img src="brazil.png" alt="Crispy Thai Basil Tofu Bowl">
                 <div class="recipe-details">
                     <div class="recipe-meta">
@@ -95,16 +100,16 @@
                     </div>
 
                     <div class="action-block">
-                        <button class="cta-button" style="background: var(--primary);">Order Selection</button>
-                        <button class="cta-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 10px 28px;">Order All Ingredients</button>
+                        <button class="cta-button" style="background: var(--primary);" onclick="orderSelection(this)">Order Selection</button>
+                        <button class="cta-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 10px 28px;" onclick="orderAllIngredients(this)">Order All Ingredients</button>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+
     <section id="trending" class="page-section">
-        <h2 style="text-align:center; font-size: 2rem; color: var(--primary);">Community Standouts</h2>
+        <h2 style="text-align:center; font-size: 2rem; color: var(--primary); margin-bottom: 30px;">Community Standouts</h2>
         <div class="grid">
             <div class="card" style="background:white; border-radius:15px; padding:30px; border-left: 6px solid var(--accent); box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
                 <h1 style="color:var(--accent); font-size: 3rem; margin-bottom:10px;">#1</h1>
@@ -118,16 +123,17 @@
             </div>
         </div>
     </section>
+
     <section id="post-recipe" class="page-section">
         <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
             <h2 style="color: var(--primary); margin-bottom: 10px;">Submit Recipe to Test Kitchen</h2>
             <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">To maintain safety and accurate portioning, recipes are run through our kitchens before publishing.</p>
-            <form onsubmit="event.preventDefault(); alert('Recipe received! Our test kitchen will analyze it within 48 hours.');">
+            <form onsubmit="event.preventDefault(); alert('Recipe received! Our test kitchen will analyze it within 48 hours.'); this.reset();">
                 <label style="font-weight:600; font-size:0.9rem;">Recipe Name</label>
-                <input type="text" placeholder="e.g., Crispy Lemon Herb Salmon" style="width:100%; padding:12px; margin:8px 0 20px; border:1px solid var(--border); border-radius:8px;">
+                <input type="text" required placeholder="e.g., Crispy Lemon Herb Salmon" style="width:100%; padding:12px; margin:8px 0 20px; border:1px solid var(--border); border-radius:8px;">
                 
                 <label style="font-weight:600; font-size:0.9rem;">Ingredients Breakdown & Alternatives</label>
-                <textarea rows="4" placeholder="List weights and potential ingredient swaps (e.g., Coconut sugar instead of Cane Sugar)..." style="width:100%; padding:12px; margin:8px 0 20px; border:1px solid var(--border); border-radius:8px; resize:vertical;"></textarea>
+                <textarea rows="4" required placeholder="List weights and potential ingredient swaps (e.g., Coconut sugar instead of Cane Sugar)..." style="width:100%; padding:12px; margin:8px 0 20px; border:1px solid var(--border); border-radius:8px; resize:vertical;"></textarea>
                 
                 <label style="font-weight:600; font-size:0.9rem;">Video Walkthrough (Optional)</label>
                 <input type="file" style="width:100%; padding:12px; margin:8px 0 25px; border:1px solid var(--border); border-radius:8px; background: var(--light-gray);">
@@ -136,12 +142,13 @@
             </form>
         </div>
     </section>
+
     <section id="video-vault" class="page-section">
         <h2 style="text-align:center; margin-bottom: 10px; font-size: 2rem; color:var(--primary);">Video Preparation Vault</h2>
         <p style="text-align:center; color:#666; margin-bottom:40px;">Step-by-step masterclasses designed to eliminate cooking mistakes.</p>
         <div class="grid">
             <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div style="background:#222; height:220px; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem; cursor:pointer;">
+                <div id="player-container" style="background:#222; height:220px; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem; cursor:pointer;" onclick="playVaultVideo()">
                     <span>▶</span>
                 </div>
                 <div style="padding:20px;">
@@ -151,10 +158,11 @@
             </div>
         </div>
     </section>
+
     <section id="login" class="page-section">
         <div style="max-width: 450px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align:center;">
             <h2 style="color: var(--primary); margin-bottom: 20px;">Welcome Back</h2>
-            <form onsubmit="event.preventDefault(); showPage('browse');">
+            <form onsubmit="event.preventDefault(); alert('Login successful!'); showPage('browse');">
                 <input type="email" placeholder="Email Address" required style="width:100%; padding:12px; margin-bottom:15px; border:1px solid var(--border); border-radius:8px;">
                 <input type="password" placeholder="Password" required style="width:100%; padding:12px; margin-bottom:25px; border:1px solid var(--border); border-radius:8px;">
                 <button type="submit" class="cta-button" style="width:100%">Access Your Account</button>
@@ -162,20 +170,23 @@
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Root & Harvest. Serving freshness via local distribution structures.</p>
+    <footer class="foot">
+        <p><a href="">About Us</a></p>
+        <p><a href="">Contacts</a></p>
+        <p><a href="">Account</a></p>
+        <p><a href="#home">Top Page</a></p>
+        <p id="last">© 2026 Root & Recipe Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
     </footer>
 
     <script>
+        // 1. Manage Page Transitions
         function showPage(pageId) {
-            // Manage page visibilities
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => section.classList.remove('active'));
             
             const targetPage = document.getElementById(pageId);
             if(targetPage) targetPage.classList.add('active');
 
-            // Synchronize active classes on Nav Items
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => link.classList.remove('active-link'));
             
@@ -185,20 +196,104 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Handle dynamically calculating custom user cart price changes
+        // 2. Dynamic Price Recalculation Handler
+        function updateCardTotal(cardElement) {
+            const checkedBoxes = cardElement.querySelectorAll('.ingredient-item input:checked');
+            let newTotal = 0;
+            
+            checkedBoxes.forEach(box => {
+                newTotal += parseFloat(box.getAttribute('data-price'));
+            });
+            
+            cardElement.querySelector('.price-display').textContent = '$' + newTotal.toFixed(2);
+        }
+
         document.querySelectorAll('.ingredient-item input').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 const card = this.closest('.recipe-details');
-                const checkedBoxes = card.querySelectorAll('.ingredient-item input:checked');
-                let newTotal = 0;
-                
-                checkedBoxes.forEach(box => {
-                    newTotal += parseFloat(box.getAttribute('data-price'));
-                });
-                
-                card.querySelector('.price-display').textContent = '$' + newTotal.toFixed(2);
+                updateCardTotal(card);
             });
         });
+
+        // 3. Order Interactive Logic
+        function orderSelection(buttonElement) {
+            const card = buttonElement.closest('.recipe-details');
+            const checkedItems = [];
+            card.querySelectorAll('.ingredient-item input:checked').forEach(box => {
+                checkedItems.push(box.parentElement.textContent.trim());
+            });
+            
+            if (checkedItems.length === 0) {
+                alert("Please select at least one ingredient to order!");
+                return;
+            }
+            alert(`🛒 Order processed for selection:\n- ${checkedItems.join('\n- ')}`);
+        }
+
+        function orderAllIngredients(buttonElement) {
+            const card = buttonElement.closest('.recipe-details');
+            const checkboxes = card.querySelectorAll('.ingredient-item input');
+            
+            // Check all checkboxes
+            checkboxes.forEach(box => box.checked = true);
+            updateCardTotal(card);
+            
+            const recipeTitle = card.querySelector('h3').textContent;
+            alert(`📦 All ingredients for "${recipeTitle}" have been checked and added to your delivery box!`);
+        }
+
+        // 4. Recipe Search Box Logic
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('#recipeGrid .recipe-card');
+
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                
+                if (title.includes(query) || tags.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Allow pressing Enter key to trigger search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // 5. Dietary Style Filters
+        function filterStyle(styleName, buttonElement) {
+            // Manage UI Active Tags
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+            buttonElement.classList.add('active-filter');
+
+            const cards = document.querySelectorAll('#recipeGrid .recipe-card');
+            cards.forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                if (styleName === 'All' || tags.includes(styleName.toLowerCase())) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 6. Media Video Play Injection
+        function playVaultVideo() {
+            const player = document.getElementById('player-container');
+            player.innerHTML = `
+                <iframe width="100%" height="220" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                    title="Vault Video Player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen style="display:block;">
+                </iframe>`;
+        }
     </script>
 </body>
 </html>
