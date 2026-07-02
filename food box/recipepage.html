@@ -179,7 +179,7 @@
     </footer>
 
     <script>
-        // 1. Manage Page Transitions
+      
         function showPage(pageId) {
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => section.classList.remove('active'));
@@ -196,7 +196,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 2. Dynamic Price Recalculation Handler
+       
         function updateCardTotal(cardElement) {
             const checkedBoxes = cardElement.querySelectorAll('.ingredient-item input:checked');
             let newTotal = 0;
@@ -215,7 +215,7 @@
             });
         });
 
-        // 3. Order Interactive Logic
+       
         function orderSelection(buttonElement) {
             const card = buttonElement.closest('.recipe-details');
             const checkedItems = [];
@@ -234,7 +234,7 @@
             const card = buttonElement.closest('.recipe-details');
             const checkboxes = card.querySelectorAll('.ingredient-item input');
             
-            // Check all checkboxes
+          
             checkboxes.forEach(box => box.checked = true);
             updateCardTotal(card);
             
@@ -242,7 +242,7 @@
             alert(`📦 All ingredients for "${recipeTitle}" have been checked and added to your delivery box!`);
         }
 
-        // 4. Recipe Search Box Logic
+       
         function handleSearch() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const cards = document.querySelectorAll('#recipeGrid .recipe-card');
@@ -259,16 +259,16 @@
             });
         }
 
-        // Allow pressing Enter key to trigger search
+        
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
             }
         });
 
-        // 5. Dietary Style Filters
+        
         function filterStyle(styleName, buttonElement) {
-            // Manage UI Active Tags
+            
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
             buttonElement.classList.add('active-filter');
 
@@ -283,7 +283,7 @@
             });
         }
 
-        // 6. Media Video Play Injection
+        
         function playVaultVideo() {
             const player = document.getElementById('player-container');
             player.innerHTML = `
