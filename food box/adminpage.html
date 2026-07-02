@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Root & Harvest | Admin Control Center</title>
-    <link rel="stylesheet" href="style2.css">
     <style>
-       
         html {
             scroll-behavior: smooth;
         }
-
         
         body {
             margin: 0;
@@ -21,7 +18,7 @@
             color: #333;
         }
 
-        
+        /* Sidebar Styling */
         .admin-sidebar {
             width: 280px;
             height: 100vh;
@@ -38,7 +35,6 @@
             z-index: 100;
         }
 
-        
         .admin-sidebar .brand-container {
             display: flex;
             flex-direction: column;
@@ -66,14 +62,13 @@
 
         .admin-sidebar .brand-subtitle {
             font-size: 0.75rem;
-            color: var(--accent, #ff6b35);
+            color: #ff6b35;
             font-weight: 600;
             letter-spacing: 2px;
             margin-top: 4px;
             text-transform: uppercase;
         }
 
-        
         .admin-nav-links {
             display: flex;
             flex-direction: column;
@@ -94,7 +89,6 @@
             transition: all 0.25s ease;
         }
 
-        
         .admin-nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.12);
             color: #ffffff;
@@ -103,11 +97,11 @@
 
         .admin-nav-links a:active,
         .admin-nav-links a:focus {
-            background-color: var(--accent, #ff6b35);
+            background-color: #ff6b35;
             color: white;
         }
 
-       
+      
         .admin-main-content {
             margin-left: 280px;
             padding: 40px 50px;
@@ -115,7 +109,6 @@
             box-sizing: border-box;
         }
 
-       
         .admin-section {
             background: #ffffff;
             border-radius: 16px;
@@ -126,7 +119,7 @@
             scroll-margin-top: 40px; 
         }
 
-        
+       
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -139,15 +132,15 @@
             padding: 24px;
             border-radius: 12px;
             border: 1px solid #e9eff4;
-            border-left: 5px solid var(--primary, #2d5a27);
+            border-left: 5px solid #2d5a27;
         }
 
         .metric-card.alert-card {
-            border-left-color: var(--accent, #ff6b35);
+            border-left-color: #ff6b35;
             background: #fffbf9;
         }
 
-        
+      
         .admin-table {
             width: 100%;
             border-collapse: collapse;
@@ -176,7 +169,7 @@
             border-bottom: none;
         }
 
-        
+       
         .badge {
             padding: 6px 14px;
             border-radius: 30px;
@@ -189,7 +182,7 @@
         .badge.approved { background-color: #ebfbee; color: #2b8a3e; }
         .badge.active-hub { background-color: #e7f5ff; color: #1c7ed6; }
 
-        
+      
         .action-btn {
             padding: 8px 16px;
             border: none;
@@ -205,13 +198,13 @@
             opacity: 0.9;
         }
 
-        .btn-approve { background-color: var(--primary, #2d5a27); color: white; }
+        .btn-approve { background-color: #2d5a27; color: white; }
         .btn-reject { background-color: #fa5252; color: white; }
     </style>
 </head>
 <body>
 
-    
+  
     <div class="admin-sidebar">
         <div class="brand-container">
             <img src="foodboxlogo.png" alt="Root & Harvest Logo" class="brand-logo">
@@ -228,8 +221,11 @@
         </div>
         
         <div style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.15);">
-            <a href="food box.html" style="color: var(--accent, #ff6b35); text-decoration: none; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
-                <span>←</span> Exit to Public Site
+            <a href="food box.html" style="color: #ff6b35; text-decoration: none; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                <span>←</span> Public Storefront
+            </a>
+            <a href="recipepage.html" style="color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: normal; display: flex; align-items: center; gap: 8px; margin-top: 12px; opacity: 0.85;">
+                <span>📖</span> View Recipe Hub
             </a>
         </div>
     </div>
@@ -237,7 +233,7 @@
     
     <div class="admin-main-content">
 
-       
+        
         <section id="overview" class="admin-section">
             <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #111;">System Diagnostics</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Real-time health assessment across active localized logistics nodes.</p>
@@ -245,11 +241,11 @@
             <div class="metrics-grid">
                 <div class="metric-card alert-card">
                     <span style="color:#666; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Awaiting Matching</span>
-                    <h2 style="font-size: 2.2rem; margin: 8px 0 0 0; color: var(--accent, #ff6b35);">14 Orders</h2>
+                    <h2 style="font-size: 2.2rem; margin: 8px 0 0 0; color: #ff6b35;">14 Orders</h2>
                 </div>
                 <div class="metric-card">
                     <span style="color:#666; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Testing Pipeline</span>
-                    <h2 style="font-size: 2.2rem; margin: 8px 0 0 0; color: var(--primary, #2d5a27);">8 Recipes</h2>
+                    <h2 style="font-size: 2.2rem; margin: 8px 0 0 0; color: #2d5a27;">8 Recipes</h2>
                 </div>
                 <div class="metric-card">
                     <span style="color:#666; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Farming Suppliers</span>
@@ -262,9 +258,9 @@
             </div>
         </section>
 
-       
+        
         <section id="orders" class="admin-section">
-            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: var(--primary, #2d5a27);">Incoming Ingredient Orders</h2>
+            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Incoming Ingredient Orders</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Approve component item assignments before dispatching local regional couriers.</p>
             
             <table class="admin-table">
@@ -305,9 +301,9 @@
             </table>
         </section>
 
-       
+        
         <section id="kitchen-reviews" class="admin-section">
-            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: var(--primary, #2d5a27);">Test Kitchen Queue</h2>
+            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Test Kitchen Queue</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">User-submitted culinary listings under physical verification trial for dynamic health safety limits.</p>
             
             <table class="admin-table">
@@ -324,7 +320,7 @@
                     <tr>
                         <td><strong>Chef_Marisa92</strong></td>
                         <td>Crispy Almond Skillet Salmon</td>
-                        <td><a href="#video-vault" style="color: var(--accent, #ff6b35); font-weight: 600; text-decoration:none;">View_Walkthrough.mp4</a></td>
+                        <td><a href="#" style="color: #ff6b35; font-weight: 600; text-decoration:none;">View_Walkthrough.mp4</a></td>
                         <td>Crushed pecans instead of shaved almonds</td>
                         <td>
                             <button class="action-btn btn-approve">Pass & Publish</button>
@@ -335,9 +331,9 @@
             </table>
         </section>
 
-        
+      
         <section id="approved-recipes" class="admin-section">
-            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: var(--primary, #2d5a27);">Approved Database Registry</h2>
+            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Approved Database Registry</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Active records indexed on public market dashboards.</p>
             
             <table class="admin-table">
@@ -354,7 +350,7 @@
                     <tr>
                         <td><img src="zesty.png" alt="Pasta" style="width: 55px; height: 42px; object-fit: cover; border-radius:6px; border: 1px solid #ddd;"></td>
                         <td><strong>Zesty Lemon Garlic Pasta</strong></td>
-                        <td>⭐️ 4.9 (2,100 Votes) — <span style="color: var(--accent, #ff6b35); font-weight: 600;">Trending #1</span></td>
+                        <td>⭐️ 4.9 (2,100 Votes) — <span style="color: #ff6b35; font-weight: 600;">Trending #1</span></td>
                         <td><span class="badge approved">Live & Active</span></td>
                         <td>
                             <button class="action-btn" style="background:#eef2f5; color:#444;">Modify</button>
@@ -364,7 +360,7 @@
                     <tr>
                         <td><img src="brazil.png" alt="Tofu" style="width: 55px; height: 42px; object-fit: cover; border-radius:6px; border: 1px solid #ddd;"></td>
                         <td><strong>Crispy Thai Basil Tofu Bowl</strong></td>
-                        <td>⭐️ 4.7 (890 Votes) — <span style="color: var(--primary, #2d5a27); font-weight: 600;">Trending #2</span></td>
+                        <td>⭐️ 4.7 (890 Votes) — <span style="color: #2d5a27; font-weight: 600;">Trending #2</span></td>
                         <td><span class="badge approved">Live & Active</span></td>
                         <td>
                             <button class="action-btn" style="background:#eef2f5; color:#444;">Modify</button>
@@ -377,7 +373,7 @@
 
        
         <section id="local-suppliers" class="admin-section">
-            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: var(--primary, #2d5a27);">Regional Farming Hub Connections</h2>
+            <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Regional Farming Hub Connections</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Track current agricultural center stock levels to manage fulfillment capacities.</p>
             
             <table class="admin-table">
