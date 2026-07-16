@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOOD BOX | Fresh Recipe Kits</title>
+    <title>FOODY BOX | Fresh Recipe Kits</title>
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
@@ -26,12 +26,10 @@
         </div>
         <div class="search-filter-container">
             <div class="search-bar-wrapper">
-                <!-- Added id to search input -->
                 <input type="text" id="searchInput" class="search-input" placeholder="Search ingredients, recipes, or keywords (e.g., Avocado, Pasta, Garlic)...">
                 <button class="cta-button" style="border-radius: 30px; padding: 0 35px;" onclick="handleSearch()">Search</button>
             </div>
             <div class="filter-tags">
-                <!-- Added click event listeners to filter buttons -->
                 <button class="filter-btn active-filter" onclick="filterStyle('All', this)">All Styles</button>
                 <button class="filter-btn" onclick="filterStyle('Vegan', this)">Vegan</button>
                 <button class="filter-btn" onclick="filterStyle('Gluten-Free', this)">Gluten-Free</button>
@@ -41,13 +39,12 @@
             </div>
         </div>
         <div class="grid" id="recipeGrid">
-            <!-- Added explicit data-tags for accurate keyword filtering -->
             <div class="recipe-card" data-tags="Gluten-Free Alternative Pasta Lemon Garlic Noodles Olive Oil">
                 <img src="zesty.png" alt="Zesty Lemon Garlic Pasta">
                 <div class="recipe-details">
                     <div class="recipe-meta">
                         <span class="style-badge">Gluten-Free Alternative</span>
-                        <div class="video-link" onclick="showPage('video-vault')">
+                        <div class="video-link" onclick="openVideoPrepSidebar('pasta')">
                             <span style="margin-right:5px;">▶</span> Watch Prep Video
                         </div>
                     </div>
@@ -79,7 +76,7 @@
                 <div class="recipe-details">
                     <div class="recipe-meta">
                         <span class="style-badge">Vegan / Plant-Based</span>
-                        <div class="video-link" onclick="showPage('video-vault')">
+                        <div class="video-link" onclick="openVideoPrepSidebar('tofu')">
                             <span style="margin-right:5px;">▶</span> Watch Prep Video
                         </div>
                     </div>
@@ -148,7 +145,7 @@
         <p style="text-align:center; color:#666; margin-bottom:40px;">Step-by-step masterclasses designed to eliminate cooking mistakes.</p>
         <div class="grid">
             <div style="background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-                <div id="player-container" style="background:#222; height:220px; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem; cursor:pointer;" onclick="playVaultVideo()">
+                <div id="player-container" style="background:#222; height:220px; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem; cursor:pointer;" onclick="openVideoPrepSidebar('vault')">
                     <span>▶</span>
                 </div>
                 <div style="padding:20px;">
@@ -170,16 +167,29 @@
         </div>
     </section>
 
+    <div id="videoPopupOverlay" class="video-popup-overlay">
+        <div id="videoPopupSidebar" class="video-popup-sidebar">
+            <button type="button" class="video-popup-close" id="videoPopupCloseBtn">&times;</button>
+            <h2 id="videoPopupTitle">Video Tutorial</h2>
+            <p id="videoPopupDesc">Master fresh preparation skills instantly.</p>
+            
+            <div class="video-popup-frame-wrapper" id="videoPopupFrameWrapper"></div>
+
+            <h3 class="video-popup-steps-title">Interactive Chapters:</h3>
+            <ul class="video-popup-steps-list" id="videoPopupStepsList">
+                </ul>
+        </div>
+    </div>
+
     <footer class="foot">
         <p><a href="">About Us</a></p>
         <p><a href="">Contacts</a></p>
         <p><a href="">Account</a></p>
         <p><a href="#home">Top Page</a></p>
-        <p id="last">© 2026 Root & Recipe Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
+        <p id="last">© 2026 FOODY BOX Root & recipes Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
     </footer>
 
     <script>
-      
         function showPage(pageId) {
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => section.classList.remove('active'));
@@ -195,8 +205,6 @@
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-       
         function updateCardTotal(cardElement) {
             const checkedBoxes = cardElement.querySelectorAll('.ingredient-item input:checked');
             let newTotal = 0;
@@ -214,8 +222,6 @@
                 updateCardTotal(card);
             });
         });
-
-       
         function orderSelection(buttonElement) {
             const card = buttonElement.closest('.recipe-details');
             const checkedItems = [];
@@ -233,16 +239,13 @@
         function orderAllIngredients(buttonElement) {
             const card = buttonElement.closest('.recipe-details');
             const checkboxes = card.querySelectorAll('.ingredient-item input');
-            
-          
+    
             checkboxes.forEach(box => box.checked = true);
             updateCardTotal(card);
             
             const recipeTitle = card.querySelector('h3').textContent;
-            alert(`📦 All ingredients for "${recipeTitle}" have been checked and added to your delivery box!`);
+            alert(`All ingredients for "${recipeTitle}" have been checked and added to your delivery box!`);
         }
-
-       
         function handleSearch() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const cards = document.querySelectorAll('#recipeGrid .recipe-card');
@@ -259,16 +262,13 @@
             });
         }
 
-        
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
             }
         });
 
-        
         function filterStyle(styleName, buttonElement) {
-            
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
             buttonElement.classList.add('active-filter');
 
@@ -283,17 +283,82 @@
             });
         }
 
-        
-        function playVaultVideo() {
-            const player = document.getElementById('player-container');
-            player.innerHTML = `
-                <iframe width="100%" height="220" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
-                    title="Vault Video Player" frameborder="0" 
+        const videoData = {
+            pasta: {
+                title: "Zesty Lemon Garlic Pasta",
+                desc: "Learn to emulsify organic local lemons, garlic, and rich cold-pressed olive oils into a uniform rustic sauce.",
+                youtubeId: "i84Sc5uvQa8",
+                steps: [
+                    "<strong>Prep Work (0:00 - 1:00):</strong> Zesting and juicing local lemons safely without releasing bitter piths.",
+                    "<strong>The Garlic Infusion (1:00 - 2:30):</strong> Thinly slicing garlic cloves to toast evenly in cold-pressed oil.",
+                    "<strong>Sauce Emulsification (2:30 - 4:00):</strong> Introducing hot pasta water slowly to bind oils and noodle starch."
+                ]
+            },
+            tofu: {
+                title: "Crispy Thai Basil Tofu Bowl",
+                desc: "Discover premium home kitchen secrets to drying and high-heat searing sprouted tofu with bell pepper blends.",
+                youtubeId: "t5GOCoxPo8g",
+                steps: [
+                    "<strong>Moisture Extraction (0:00 - 1:15):</strong> Wrapping and pressing organic tofu to prep for starch coats.",
+                    "<strong>High Heat Sauté (1:15 - 2:45):</strong> Flash searing bell pepper medleys and basil leaves to hold crisp textures.",
+                    "<strong>Glazing Technique (2:45 - 4:00):</strong> Coating toasted tofu cubes smoothly in savory, fragrant soy reduction."
+                ]
+            },
+            vault: {
+                title: "Knife Skills 101: Precision Dicing",
+                desc: "Master workspace alignment, basic grip mechanics, and uniform dicing to cut down prep time safely.",
+                youtubeId: "dQw4w9WgXcQ",
+                steps: [
+                    "<strong>Station Setup (0:00 - 1:05):</strong> Locking down chopping boards safely with a damp towel base.",
+                    "<strong>The Claw Grip (1:05 - 2:30):</strong> Curling fingertips inwards to ensure seamless, safe guiding runs.",
+                    "<strong>Rolling Cut Technique (2:30 - 4:15):</strong> Keeping the knife tip grounded while gliding the blade smoothly."
+                ]
+            }
+        };
+
+        const videoPopupOverlay = document.getElementById('videoPopupOverlay');
+        const videoPopupCloseBtn = document.getElementById('videoPopupCloseBtn');
+        const videoPopupFrameWrapper = document.getElementById('videoPopupFrameWrapper');
+        const videoPopupTitle = document.getElementById('videoPopupTitle');
+        const videoPopupDesc = document.getElementById('videoPopupDesc');
+        const videoPopupStepsList = document.getElementById('videoPopupStepsList');
+
+        function openVideoPrepSidebar(key) {
+            const data = videoData[key];
+            if (!data) return;
+
+            videoPopupTitle.textContent = data.title;
+            videoPopupDesc.textContent = data.desc;
+            videoPopupStepsList.innerHTML = data.steps.map(step => `<li>${step}</li>`).join('');
+            videoPopupFrameWrapper.innerHTML = `
+                <iframe width="100%" height="100%" 
+                    src="https://www.youtube.com/embed/${data.youtubeId}?autoplay=1" 
+                    title="${data.title}" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen style="display:block;">
+                    allowfullscreen>
                 </iframe>`;
+
+            videoPopupOverlay.classList.add('active');
         }
+
+        function closeVideoPrepSidebar() {
+            videoPopupOverlay.classList.remove('active');
+            videoPopupFrameWrapper.innerHTML = '';
+        }
+
+        videoPopupCloseBtn.addEventListener('click', closeVideoPrepSidebar);
+        
+        videoPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === videoPopupOverlay) {
+                closeVideoPrepSidebar();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoPopupOverlay.classList.contains('active')) {
+                closeVideoPrepSidebar();
+            }
+        });
     </script>
 </body>
 </html>
