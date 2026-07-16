@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Root & Harvest | Admin Control Center</title>
+    <title>FOODY BOX | Admin Control Center</title>
     <style>
         html {
             scroll-behavior: smooth;
@@ -18,7 +18,7 @@
             color: #333;
         }
 
-        
+       
         .admin-sidebar {
             width: 280px;
             height: 100vh;
@@ -40,7 +40,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             padding-bottom: 25px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
@@ -69,35 +69,6 @@
             text-transform: uppercase;
         }
 
-        
-        .sidebar-search-box {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .sidebar-search-box input {
-            width: 100%;
-            padding: 10px 14px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            box-sizing: border-box;
-            font-size: 0.85rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-search-box input::placeholder {
-            color: #b0c4b0;
-        }
-
-        .sidebar-search-box input:focus {
-            background: rgba(255, 255, 255, 0.18);
-            border-color: #ff6b35;
-            box-shadow: 0 0 8px rgba(255, 107, 53, 0.3);
-        }
-
         .admin-nav-links {
             display: flex;
             flex-direction: column;
@@ -118,7 +89,7 @@
             transition: all 0.25s ease;
         }
 
-        .admin-nav-links a:hover, .admin-nav-links a.active-nav {
+        .admin-nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.12);
             color: #ffffff;
             padding-left: 22px;
@@ -146,10 +117,9 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             border: 1px solid #eef2f5;
             scroll-margin-top: 40px; 
-            transition: all 0.3s ease;
         }
 
-        
+       
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -195,21 +165,11 @@
             color: #444;
         }
 
-        .admin-table tr {
-            transition: background-color 0.2s ease, opacity 0.4s ease, transform 0.4s ease;
-        }
-
         .admin-table tr:last-child td {
             border-bottom: none;
         }
 
-        
-        .row-fade-out {
-            opacity: 0;
-            transform: translateX(30px);
-        }
-
-       
+    
         .badge {
             padding: 6px 14px;
             border-radius: 30px;
@@ -222,7 +182,7 @@
         .badge.approved { background-color: #ebfbee; color: #2b8a3e; }
         .badge.active-hub { background-color: #e7f5ff; color: #1c7ed6; }
 
-        
+    
         .action-btn {
             padding: 8px 16px;
             border: none;
@@ -230,105 +190,29 @@
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
-            transition: opacity 0.2s, transform 0.1s ease;
+            transition: opacity 0.2s;
             margin-right: 6px;
         }
 
         .action-btn:hover {
             opacity: 0.9;
         }
-        
-        .action-btn:active {
-            transform: scale(0.96);
-        }
 
         .btn-approve { background-color: #2d5a27; color: white; }
         .btn-reject { background-color: #fa5252; color: white; }
-
-        
-        .admin-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            text-align: center;
-            position: relative;
-            animation: modalSlide 0.3s ease-out;
-        }
-
-        @keyframes modalSlide {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-        }
-        
-        .modal-close:hover { color: #333; }
-
-        
-        .toast-popup {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #222;
-            color: white;
-            padding: 14px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: 500;
-            font-size: 0.9rem;
-            z-index: 1100;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-        .toast-popup.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
 
-    
     <div class="admin-sidebar">
         <div class="brand-container">
             <img src="foodboxlogo.png" alt="Root & Harvest Logo" class="brand-logo">
             <div class="brand-title">ROOT & HARVEST</div>
             <div class="brand-subtitle">Admin Control Center</div>
         </div>
-
         
-        <div class="sidebar-search-box">
-            <input type="text" id="globalAdminSearch" placeholder="Filter current page data...">
-        </div>
-        
-        <div class="admin-nav-links" id="sidebarNav">
-            <a href="#overview" class="active-nav">System Overview</a>
+        <div class="admin-nav-links">
+            <a href="#overview">System Overview</a>
             <a href="#orders">Incoming Orders</a>
             <a href="#kitchen-reviews">Kitchen Reviews</a>
             <a href="#approved-recipes">Approved Recipes</a>
@@ -345,10 +229,9 @@
         </div>
     </div>
 
-    
+
     <div class="admin-main-content">
 
-        
         <section id="overview" class="admin-section">
             <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #111;">System Diagnostics</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Real-time health assessment across active localized logistics nodes.</p>
@@ -356,11 +239,11 @@
             <div class="metrics-grid">
                 <div class="metric-card alert-card">
                     <span style="color:#666; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Awaiting Matching</span>
-                    <h2 id="counter-orders" style="font-size: 2.2rem; margin: 8px 0 0 0; color: #ff6b35;">14 Orders</h2>
+                    <h2 style="font-size: 2.2rem; margin: 8px 0 0 0; color: #ff6b35;">14 Orders</h2>
                 </div>
                 <div class="metric-card">
                     <span style="color:#666; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Testing Pipeline</span>
-                    <h2 id="counter-recipes" style="font-size: 2.2rem; margin: 8px 0 0 0; color: #2d5a27;">8 Recipes</h2>
+                    <h2 style="font-size: 2.2rem; margin: 8px 0 0 0; color: #2d5a27;">8 Recipes</h2>
                 </div>
                 <div class="metric-card">
                     <span style="color:#666; font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Farming Suppliers</span>
@@ -373,7 +256,6 @@
             </div>
         </section>
 
-       
         <section id="orders" class="admin-section">
             <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Incoming Ingredient Orders</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Approve component item assignments before dispatching local regional couriers.</p>
@@ -389,7 +271,7 @@
                         <th>Verification Controls</th>
                     </tr>
                 </thead>
-                <tbody id="ordersTableBody">
+                <tbody>
                     <tr>
                         <td><strong>#10924</strong></td>
                         <td>Zesty Lemon Garlic Pasta (Full Kit)</td>
@@ -397,8 +279,8 @@
                         <td>$11.00</td>
                         <td><span class="badge pending">Pending Match</span></td>
                         <td>
-                            <button class="action-btn btn-approve" onclick="processRow(this, 'Order Approved Successfully!', 'orders')">Approve</button>
-                            <button class="action-btn btn-reject" onclick="processRow(this, 'Order placed on Hold', 'none')">Hold</button>
+                            <button class="action-btn btn-approve">Approve</button>
+                            <button class="action-btn btn-reject">Hold</button>
                         </td>
                     </tr>
                     <tr>
@@ -408,15 +290,14 @@
                         <td>$5.30</td>
                         <td><span class="badge pending">Pending Match</span></td>
                         <td>
-                            <button class="action-btn btn-approve" onclick="processRow(this, 'Order Approved Successfully!', 'orders')">Approve</button>
-                            <button class="action-btn btn-reject" onclick="processRow(this, 'Order placed on Hold', 'none')">Hold</button>
+                            <button class="action-btn btn-approve">Approve</button>
+                            <button class="action-btn btn-reject">Hold</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-        
         <section id="kitchen-reviews" class="admin-section">
             <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Test Kitchen Queue</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">User-submitted culinary listings under physical verification trial for dynamic health safety limits.</p>
@@ -431,22 +312,21 @@
                         <th>Workflow Decision</th>
                     </tr>
                 </thead>
-                <tbody id="kitchenTableBody">
+                <tbody>
                     <tr>
                         <td><strong>Chef_Marisa92</strong></td>
                         <td>Crispy Almond Skillet Salmon</td>
-                        <td><a href="#" class="video-preview-link" data-title="Crispy Almond Skillet Salmon" style="color: #ff6b35; font-weight: 600; text-decoration:none;">View_Walkthrough.mp4</a></td>
+                        <td><a href="#" style="color: #ff6b35; font-weight: 600; text-decoration:none;">View_Walkthrough.mp4</a></td>
                         <td>Crushed pecans instead of shaved almonds</td>
                         <td>
-                            <button class="action-btn btn-approve" onclick="processRow(this, 'Recipe Passed &amp; Published to Public Registry!', 'recipes')">Pass &amp; Publish</button>
-                            <button class="action-btn btn-reject" onclick="processRow(this, 'Submission Rejected.', 'recipes')">Reject</button>
+                            <button class="action-btn btn-approve">Pass & Publish</button>
+                            <button class="action-btn btn-reject">Reject</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-        
         <section id="approved-recipes" class="admin-section">
             <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Approved Database Registry</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Active records indexed on public market dashboards.</p>
@@ -466,27 +346,26 @@
                         <td><img src="zesty.png" alt="Pasta" style="width: 55px; height: 42px; object-fit: cover; border-radius:6px; border: 1px solid #ddd;"></td>
                         <td><strong>Zesty Lemon Garlic Pasta</strong></td>
                         <td>⭐️ 4.9 (2,100 Votes) — <span style="color: #ff6b35; font-weight: 600;">Trending #1</span></td>
-                        <td><span class="badge approved">Live &amp; Active</span></td>
+                        <td><span class="badge approved">Live & Active</span></td>
                         <td>
-                            <button class="action-btn" style="background:#eef2f5; color:#444;" onclick="showToast('Edit mode opened for item.')">Modify</button>
-                            <button class="action-btn btn-reject" onclick="processRow(this, 'Recipe unpublished from live store.', 'none')">Unpublish</button>
+                            <button class="action-btn" style="background:#eef2f5; color:#444;">Modify</button>
+                            <button class="action-btn btn-reject">Unpublish</button>
                         </td>
                     </tr>
                     <tr>
                         <td><img src="brazil.png" alt="Tofu" style="width: 55px; height: 42px; object-fit: cover; border-radius:6px; border: 1px solid #ddd;"></td>
                         <td><strong>Crispy Thai Basil Tofu Bowl</strong></td>
                         <td>⭐️ 4.7 (890 Votes) — <span style="color: #2d5a27; font-weight: 600;">Trending #2</span></td>
-                        <td><span class="badge approved">Live &amp; Active</span></td>
+                        <td><span class="badge approved">Live & Active</span></td>
                         <td>
-                            <button class="action-btn" style="background:#eef2f5; color:#444;" onclick="showToast('Edit mode opened for item.')">Modify</button>
-                            <button class="action-btn btn-reject" onclick="processRow(this, 'Recipe unpublished from live store.', 'none')">Unpublish</button>
+                            <button class="action-btn" style="background:#eef2f5; color:#444;">Modify</button>
+                            <button class="action-btn btn-reject">Unpublish</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-       
         <section id="local-suppliers" class="admin-section">
             <h2 style="margin: 0 0 5px 0; font-size: 1.6rem; color: #2d5a27;">Regional Farming Hub Connections</h2>
             <p style="margin: 0; color: #666; font-size: 0.95rem;">Track current agricultural center stock levels to manage fulfillment capacities.</p>
@@ -519,105 +398,5 @@
 
     </div>
 
-    
-    <div id="mediaModal" class="admin-modal">
-        <div class="modal-content">
-            <span class="modal-close" id="closeModalBtn">&times;</span>
-            <h3 id="modalRecipeTitle" style="margin-top: 0; color: #2d5a27;">Recipe Asset Walkthrough</h3>
-            <div style="background: #222; border-radius: 8px; height: 240px; display: flex; align-items: center; justify-content: center; color: #aaa; margin: 20px 0;">
-                <div style="text-align: center;">
-                    <span style="font-size: 3rem;">▶</span>
-                    <p style="margin: 10px 0 0 0; font-family: monospace; font-size: 0.85rem;" id="modalFileName">stream_file.mp4</p>
-                </div>
-            </div>
-            <p style="font-size: 0.9rem; color: #666;">Simulated Media Player playback window for physical verification criteria testing.</p>
-        </div>
-    </div>
-
-   
-    <div id="toastNotification" class="toast-popup">Action Logged Successfully</div>
-
-   
-    <script>
-        
-        const searchInput = document.getElementById('globalAdminSearch');
-        searchInput.addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase().trim();
-            const allTableRows = document.querySelectorAll('.admin-table tbody tr');
-            
-            allTableRows.forEach(row => {
-                const textContent = row.textContent.toLowerCase();
-                if (textContent.includes(query)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        });
-
-       
-        function processRow(buttonElement, successMessage, counterType) {
-            const targetedRow = buttonElement.closest('tr');
-            
-           
-            targetedRow.classList.add('row-fade-out');
-            
-            setTimeout(() => {
-                targetedRow.remove();
-                showToast(successMessage);
-                
-                
-                if (counterType === 'orders') {
-                    const countEl = document.getElementById('counter-orders');
-                    let count = parseInt(countEl.textContent);
-                    if (count > 0) countEl.textContent = (count - 1) + " Orders";
-                } else if (counterType === 'recipes') {
-                    const countEl = document.getElementById('counter-recipes');
-                    let count = parseInt(countEl.textContent);
-                    if (count > 0) countEl.textContent = (count - 1) + " Recipes";
-                }
-            }, 400);
-        }
-
-       
-        let toastTimeout;
-        function showToast(textMessage) {
-            const toast = document.getElementById('toastNotification');
-            toast.textContent = textMessage;
-            toast.classList.add('show');
-            
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-       
-        const mediaModal = document.getElementById('mediaModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalRecipeTitle = document.getElementById('modalRecipeTitle');
-        const modalFileName = document.getElementById('modalFileName');
-
-        document.querySelectorAll('.video-preview-link').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                modalRecipeTitle.textContent = this.getAttribute('data-title');
-                modalFileName.textContent = this.textContent;
-                mediaModal.style.display = 'flex';
-            });
-        });
-
-        closeModalBtn.addEventListener('click', () => mediaModal.style.display = 'none');
-        window.addEventListener('click', (e) => { if (e.target === mediaModal) mediaModal.style.display = 'none'; });
-
-       
-        const navLinks = document.querySelectorAll('#sidebarNav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.forEach(l => l.classList.remove('active-nav'));
-                this.classList.add('active-nav');
-            });
-        });
-    </script>
 </body>
 </html>
