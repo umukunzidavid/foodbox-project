@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Root & Harvest | Profile Setup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fafbfc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2d3748;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .signup-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+            margin: 20px;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #2d5a27;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-header p {
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        /* Step Indicators */
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #edf2f7;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .step {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            color: #a0aec0;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            border-color: #2d5a27;
+            color: #2d5a27;
+            background: #f0fff4;
+        }
+
+        .step.completed {
+            border-color: #2d5a27;
+            background: #2d5a27;
+            color: white;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        /* Normalized Grid Row for Names */
+        .name-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 1.2fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .name-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2d5a27;
+            box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+        }
+
+        /* Preference Grid System */
+        .pref-section-title {
+            font-size: 1rem;
+            color: #2d5a27;
+            margin: 20px 0 10px 0;
+            font-weight: 700;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 6px;
+        }
+
+        .preference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .pref-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4a5568;
+            transition: all 0.2s ease;
+        }
+
+        .pref-card:hover {
+            background: #edf2f7;
+        }
+
+        .pref-card input {
+            accent-color: #2d5a27;
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary { background-color: #2d5a27; color: white; }
+        .btn-primary:hover { background-color: #1e3d1a; }
+        .btn-secondary { background-color: #edf2f7; color: #4a5568; }
+        .btn-secondary:hover { background-color: #e2e8f0; }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        .login-footer a { color: #ff6b35; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <div class="brand-header">
+            <h1>ROOT & HARVEST</h1>
+            <p>Smarter Local Ingredients, Tailored to You</p>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step active" id="stepIndicator1">1</div>
+            <div class="step" id="stepIndicator2">2</div>
+        </div>
+
+        <form id="signupForm" onsubmit="handleFormSubmission(event)">
+            
+            <div class="form-step active" id="step1">
+                
+                <div class="name-grid">
+                    <div>
+                        <label style="font-size: 0.85rem; font-weight: 600; color: #4a5568;">First Name *</label>
+                        <input type="text" id="regFirstName" class="form-input" placeholder="Jane" required>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.85rem; font-weight: 600; color: #4a5568;">Middle Name</label>
+                        <input type="text" id="regMiddleName" class="form-input" placeholder="A.">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.85rem; font-weight: 600; color: #4a5568;">Last Name</label>
+                        <input type="text" id="regLastName" class="form-input" placeholder="Doe">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regChefName">Public Chef Alias *</label>
+                    <input type="text" id="regChefName" class="form-input" placeholder="e.g., Chef_JaneD (will show on your recipes)" required>
+                    <span style="font-size: 0.75rem; color: #a0aec0;">Used publicly to keep your real names secure.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email Address *</label>
+                    <input type="email" id="regEmail" class="form-input" placeholder="jane@harvest.com" required>
+                    <div id="emailError" class="error-message">This email is already registered.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regPass">Password *</label>
+                    <input type="password" id="regPass" class="form-input" placeholder="Min. 6 characters" required minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassConfirm">Confirm Password *</label>
+                    <input type="password" id="regPassConfirm" class="form-input" placeholder="Re-enter password" required>
+                    <div id="passwordMismatchError" class="error-message">Passwords do not match.</div>
+                </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-primary" onclick="navigateToStep(2)">Next: Diet & Lifestyles →</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step2">
+                <h3 style="margin-top: 0; margin-bottom: 5px; font-size: 1.1rem; color: #2d5a27;">Personalize Your Dining Lifestyles</h3>
+                <p style="margin: 0 0 20px 0; color: #718096; font-size: 0.85rem; line-height: 1.4;">
+                    We use these high-level filters to recommend compatible meal kits on your storefront marketplace.
+                </p>
+
+                <div class="pref-section-title">Dietary Profile</div>
+                <div class="preference-grid">
+                    <label class="pref-card">
+                        <input type="checkbox" name="dietType" value="vegan">
+                        <span>Vegan</span>
+                    </label>
+                    <label class="pref-card">
+                        <input type="checkbox" name="dietType" value="vegetarian">
+                        <span>Vegetarian</span>
+                    </label>
+                    <label class="pref-card">
+                        <input type="checkbox" name="dietType" value="keto">
+                        <span>Keto / Low-Carb</span>
+                    </label>
+                    <label class="pref-card">
+                        <input type="checkbox" name="dietType" value="pescatarian">
+                        <span>Pescatarian</span>
+                    </label>
+                </div>
+
+                <div class="pref-section-title">Common Allergen Warnings</div>
+                <div class="preference-grid">
+                    <label class="pref-card">
+                        <input type="checkbox" name="allergyType" value="gluten_free">
+                        <span>Gluten-Free</span>
+                    </label>
+                    <label class="pref-card">
+                        <input type="checkbox" name="allergyType" value="dairy_free">
+                        <span>Dairy-Free</span>
+                    </label>
+                    <label class="pref-card">
+                        <input type="checkbox" name="allergyType" value="nuts_free">
+                        <span>Nut-Free</span>
+                    </label>
+                    <label class="pref-card">
+                        <input type="checkbox" name="allergyType" value="soy_free">
+                        <span>Soy-Free</span>
+                    </label>
+                </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-secondary" onclick="navigateToStep(1)">← Back</button>
+                    <button type="submit" class="btn btn-primary">Complete Setup</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="login-footer">
+            Already have an account? <a href="food box.html #portal">Login here</a>
+        </div>
+    </div>
+
+    <script>
+        function navigateToStep(targetStep) {
+            const step1Container = document.getElementById('step1');
+            const step2Container = document.getElementById('step2');
+            const ind1 = document.getElementById('stepIndicator1');
+            const ind2 = document.getElementById('stepIndicator2');
+
+            if (targetStep === 2) {
+                const first = document.getElementById('regFirstName').value.trim();
+                const chef = document.getElementById('regChefName').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                const password = document.getElementById('regPass').value;
+                const confirmPassword = document.getElementById('regPassConfirm').value;
+
+                if (!first || !chef || !email || !password || !confirmPassword) {
+                    alert("Please fill out all required credentials before continuing.");
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    document.getElementById('passwordMismatchError').style.display = 'block';
+                    return;
+                } else {
+                    document.getElementById('passwordMismatchError').style.display = 'none';
+                }
+
+                // Unique Email and Chef Name Check
+                const registeredUsers = JSON.parse(localStorage.getItem('rh_users')) || [];
+                const emailExists = registeredUsers.some(user => user.email.toLowerCase() === email.toLowerCase());
+                const chefExists = registeredUsers.some(user => user.chefAlias.toLowerCase() === chef.toLowerCase());
+
+                if (emailExists) {
+                    document.getElementById('emailError').textContent = "This email is already registered.";
+                    document.getElementById('emailError').style.display = 'block';
+                    return;
+                } else if (chefExists) {
+                    document.getElementById('emailError').textContent = "This Chef Alias is already taken.";
+                    document.getElementById('emailError').style.display = 'block';
+                    return;
+                } else {
+                    document.getElementById('emailError').style.display = 'none';
+                }
+
+                step1Container.classList.remove('active');
+                step2Container.classList.add('active');
+                ind1.className = "step completed";
+                ind2.className = "step active";
+            } else if (targetStep === 1) {
+                step2Container.classList.remove('active');
+                step1Container.classList.add('active');
+                ind1.className = "step active";
+                ind2.className = "step";
+            }
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+
+            const first = document.getElementById('regFirstName').value.trim();
+            const middle = document.getElementById('regMiddleName').value.trim();
+            const last = document.getElementById('regLastName').value.trim();
+            const chef = document.getElementById('regChefName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPass').value;
+
+            // Gather Preferences
+            const dietNodes = document.querySelectorAll('input[name="dietType"]:checked');
+            const diets = Array.from(dietNodes).map(node => node.value);
+
+            const allergyNodes = document.querySelectorAll('input[name="allergyType"]:checked');
+            const allergies = Array.from(allergyNodes).map(node => node.value);
+
+            const newUserProfile = {
+                id: 'usr_' + Date.now(),
+                firstName: first,
+                middleName: middle,
+                lastName: last,
+                chefAlias: chef,
+                email: email,
+                passwordHash: btoa(password),
+                preferences: { diets, allergies }
+            };
+
+            const usersList = JSON.parse(localStorage.getItem('rh_users')) || [];
+            usersList.push(newUserProfile);
+            localStorage.setItem('rh_users', JSON.stringify(usersList));
+
+            // Log user in
+            localStorage.setItem('rh_active_user', JSON.stringify({
+                id: newUserProfile.id,
+                chefAlias: newUserProfile.chefAlias,
+                firstName: newUserProfile.firstName,
+                email: newUserProfile.email
+            }));
+
+            alert(`Welcome aboard, Chef ${chef}! Your profile is active.`);
+            window.location.href = 'food box.html';
+        }
+    </script>
+</body>
+</html>
