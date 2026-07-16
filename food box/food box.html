@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOOD BOX | Fresh Ingredients, Your Way</title>
+    <title>FOODY BOX | Fresh Ingredients, Your Way</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+       
+    </style>
 </head>
 <body>
 
@@ -15,7 +18,7 @@
             <li><a href="#how-it-works" class="nav-item">How It Works</a></li>
             <li><a href="#recipes" class="nav-item">Hot Topic</a></li>
             <li><a href="#tutorials" class="nav-item">Prep Videos</a></li>
-            <li><a href="#portal" class="cta-btn">Login / Post Recipe</a></li>
+            <li><a href="#" id="navLoginBtn" class="cta-btn">Login / Post Recipe</a></li>
         </ul>
     </nav>
 
@@ -25,7 +28,7 @@
             <p>Choose from top-ranked local chef recipes. Buy the entire basket delivered by local suppliers, or check off what you already have at home to save money and reduce waste.</p>
             <div style="display: flex; gap: 15px;">
                 <a href="recipepage.html" class="cta-btn" style="text-decoration: none; display: inline-block;">Explore Recipes</a>
-                <a href="#portal" class="tab-btn" style="text-decoration: none; display: inline-block; padding: 10px 20px;">Submit a Recipe</a>
+                <a href="#" class="tab-btn" id="heroSubmitBtn" style="text-decoration: none; display: inline-block; padding: 10px 20px;">Submit a Recipe</a>
             </div>
         </div>
         <div class="hero-image">
@@ -54,7 +57,6 @@
     <section id="recipes" class="section-padding">
         <h2 class="section-title">Browse Community Masterpieces</h2>
         
-        <!-- Tab buttons call the filterRecipes function -->
         <div class="recipe-tabs">
             <button class="tab-btn active" onclick="filterRecipes('trending', this)">Trending This Week</button>
             <button class="tab-btn" onclick="filterRecipes('top-rated', this)">Best of All Time</button>
@@ -62,7 +64,6 @@
         </div>
 
         <div class="recipe-grid">
-            <!-- Added data attributes for JS filtering -->
             <div class="recipe-card" data-category="trending vegan">
                 <div class="recipe-img-container">
                     <span class="rank-badge">#1 Trending</span>
@@ -71,7 +72,7 @@
                 <div class="recipe-info">
                     <h3>Garden Avocado Pesto Pasta</h3>
                     <div class="recipe-meta">
-                        <span>⏱️ 20 Mins</span>
+                        <span>20 Mins</span>
                         <span>⭐️ 4.9 (1.2k reviews)</span>
                     </div>
                     <p style="font-size: 14px; color: #616161; margin-bottom: 20px;">
@@ -92,7 +93,7 @@
                 <div class="recipe-info">
                     <h3>Rustic Honey Glazed Salmon</h3>
                     <div class="recipe-meta">
-                        <span>⏱️ 30 Mins</span>
+                        <span>30 Mins</span>
                         <span>⭐️ 5.0 (3.4k reviews)</span>
                     </div>
                     <p style="font-size: 14px; color: #616161; margin-bottom: 20px;">
@@ -113,7 +114,7 @@
                 <div class="recipe-info">
                     <h3>Crispy Sweet Potato Bowl</h3>
                     <div class="recipe-meta">
-                        <span>⏱️ 25 Mins</span>
+                        <span>25 Mins</span>
                         <span>⭐️ 4.8 (850 reviews)</span>
                     </div>
                     <p style="font-size: 14px; color: #616161; margin-bottom: 20px;">
@@ -133,7 +134,6 @@
         <p style="max-width: 600px; margin: -20px auto 40px auto; color: #556b2f;">Watch easy-to-follow videos demonstrating exactly how to slice, dice, and construct your dishes with the exact ingredients delivered to your door.</p>
         
         <div class="video-container">
-            <!-- Added id and click handler to simulate video playback -->
             <div class="video-placeholder" id="videoPlaceholder" onclick="playVideo()" style="cursor: pointer; position: relative; background: #e0e0e0; padding: 60px 20px; text-align: center;">
                 <span style="font-size: 60px; display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">▶️</span>
                 <h3 style="margin-top: 15px;">Video Tutorial: Perfect Pesto & Knife Skills</h3>
@@ -142,47 +142,47 @@
         </div>
     </section>
 
-    <section id="portal" class="section-padding portal-section">
-        <div class="login-card">
-            <h2 style="color: #1b5e20; margin-bottom: 10px;">Welcome Back!</h2>
-            <p style="font-size: 14px; color: #757575; margin-bottom: 25px;">Log in to order ingredients, watch restricted premium videos, or submit your own recipes for testing.</p>
+   
+    <div id="portalSidebarOverlay" class="portal-overlay">
+        <div id="portalSidebar" class="portal-sidebar">
+            <button type="button" class="portal-sidebar-close" id="portalCloseBtn">&times;</button>
+            <h2>Welcome Back!</h2>
+            <p>Log in to order ingredients, watch restricted premium videos, or submit your own recipes for testing.</p>
             
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
+            <form id="portalLoginForm">
+                <div class="portal-form-group">
+                    <label for="portalEmail">Email Address</label>
+                    <input type="email" id="portalEmail" required placeholder="you@example.com">
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
+                <div class="portal-form-group">
+                    <label for="portalPassword">Password</label>
+                    <input type="password" id="portalPassword" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="cta-btn" style="width: 100%; border: none; font-size: 16px; font-weight:600; padding: 12px; margin-top: 10px; cursor: pointer;">Sign In</button>
+                <button type="submit" class="portal-cta-btn">Sign In</button>
             </form>
             
-            <div style="margin-top: 20px; font-size: 13px; color: #616161;">
-                Don't have an account? <a href="#" style="color: #2e7d32; text-decoration: none; font-weight: bold;">Register Here</a>
+            <div style="margin-top: 25px; font-size: 13px; color: #616161; text-align: center;">
+                Don't have an account? <a href="signup.html" style="color: #2e7d32; text-decoration: none; font-weight: bold;">Register Here</a>
             </div>
         </div>
-    </section>
+    </div>
 
     <footer class="foot">
         <p><a href="">About Us</a></p>
         <p><a href="">Contacts</a></p>
         <p><a href="">Account</a></p>
         <p><a href="#home">Top Page</a></p>
-        <p id="last">© 2026 Root & Recipe Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
+        <p id="last">© 2026 FOODY BOX Root & recipes Inc. Powered by Fresh Local Suppliers & Passionate Home Cooks.</p>
     </footer>
 
    
     <script>
-       
+        
         function filterRecipes(category, clickedButton) {
-           
             const tabs = document.querySelectorAll('.recipe-tabs .tab-btn');
             tabs.forEach(tab => tab.classList.remove('active'));
             clickedButton.classList.add('active');
 
-         
             const cards = document.querySelectorAll('.recipe-grid .recipe-card');
             cards.forEach(card => {
                 const categories = card.getAttribute('data-category');
@@ -194,10 +194,9 @@
             });
         }
 
-      
+        
         function playVideo() {
             const container = document.getElementById('videoPlaceholder');
-          
             container.innerHTML = `
                 <iframe width="100%" height="315" 
                     src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
@@ -209,17 +208,53 @@
 
        
         function addToCart(itemName) {
-            alert(`🛒 Added to box: ${itemName}!`);
+            alert(`Added to box: ${itemName}!`);
         }
 
-       
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            alert(`Logged in successfully as ${email}! Ready to submit or buy recipes.`);
+        
+        const navLoginBtn = document.getElementById('navLoginBtn');
+        const heroSubmitBtn = document.getElementById('heroSubmitBtn');
+        const portalOverlay = document.getElementById('portalSidebarOverlay');
+        const portalCloseBtn = document.getElementById('portalCloseBtn');
+
+      
+        function openPortalSidebar(e) {
+            e.preventDefault();
+            portalOverlay.classList.add('active');
+        }
+        navLoginBtn.addEventListener('click', openPortalSidebar);
+        
+        
+        heroSubmitBtn.addEventListener('click', openPortalSidebar);
+
+      
+        portalCloseBtn.addEventListener('click', () => {
+            portalOverlay.classList.remove('active');
         });
 
-       
+        
+        portalOverlay.addEventListener('click', (e) => {
+            if (e.target === portalOverlay) {
+                portalOverlay.classList.remove('active');
+            }
+        });
+
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && portalOverlay.classList.contains('active')) {
+                portalOverlay.classList.remove('active');
+            }
+        });
+
+        
+        document.getElementById('portalLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('portalEmail').value;
+            alert(`Logged in successfully as ${email}! Ready to submit or buy recipes.`);
+            portalOverlay.classList.remove('active'); 
+        });
+
+        
         window.addEventListener('scroll', () => {
             let currentSection = "";
             const sections = document.querySelectorAll('section');
@@ -227,7 +262,6 @@
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-
                 if (pageYOffset >= sectionTop - 120) {
                     currentSection = section.getAttribute('id');
                 }
