@@ -12,7 +12,7 @@
             overflow-x: hidden;
         }
 
-        /* Navigation Bar */
+        
         nav {
             position: fixed;
             top: 0;
@@ -116,7 +116,7 @@
             box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
         }
 
-        /* Features / How it works */
+      
         .section-padding {
             padding: 80px 5%;
             text-align: center;
@@ -277,7 +277,7 @@
             border: 1px solid #2e7d32;
         }
 
-        /* Video / Tutorial section */
+        
         .video-section {
             background: #f1f8e9;
         }
@@ -303,8 +303,122 @@
             color: white;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img_video_bg.jpg') center/cover;
         }
+         .portal-overlay {
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 10000;
+        }
+        .portal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .portal-sidebar {
+            position: fixed;
+            top: 0; 
+            right: 0; 
+            width: 360px; 
+            max-width: 100%;
+            height: 100%;
+            background: white;
+            padding: 40px 30px;
+            box-sizing: border-box; 
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%); 
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); /* Snappy modern curve */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
 
-        /* Login / Portal Section */
+        
+        .portal-overlay.active .portal-sidebar {
+            transform: translateX(0);
+        }
+
+       
+        .portal-sidebar-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: #888;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .portal-sidebar-close:hover {
+            color: #1b5e20;
+        }
+
+        .portal-sidebar h2 {
+            color: #1b5e20; 
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .portal-sidebar p {
+            font-size: 14px; 
+            color: #757575; 
+            margin-bottom: 25px;
+            line-height: 1.5;
+        } 
+        .portal-form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .portal-form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #4a5568;
+            text-align: left;
+        }
+
+        .portal-form-group input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .portal-form-group input:focus {
+            border-color: #2e7d32;
+        }
+
+        .portal-cta-btn {
+            width: 100%; 
+            border: none; 
+            font-size: 16px; 
+            font-weight: 600; 
+            padding: 12px; 
+            margin-top: 10px; 
+            cursor: pointer;
+            background-color: #2e7d32;
+            color: white;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .portal-cta-btn:hover {
+            background-color: #1b5e20;
+        }
+
+       
         .portal-section {
             display: flex;
             align-items: center;
@@ -348,15 +462,32 @@
             border-color: #2e7d32;
         }
 
-        /* Footer */
+       
         footer {
+            display: flex;
             background: #1b5e20;
             color: #e8f5e9;
             padding: 40px 5%;
-            text-align: center;
+            text-align: left;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-content: space-between ;
+            gap: 5px;
+        }
+        #last {
+            align-self: center;
+            margin-top: 35px;
+        }
+        .foot a{
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+        }
+        .foot a:hover {
+            color: orange;
         }
 
-        /* Utilities */
+        
         .badge-alt {
             background: #81c784 !important;
         }
